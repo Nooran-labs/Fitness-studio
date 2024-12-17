@@ -8,11 +8,13 @@ public class Gym {
     private List<Client> clients;
     private List<Instructor> instructors;
     private List<Session> sessions;
+    private List<String> actions ;
 
     private Gym() {
         clients = new ArrayList<>();
         instructors = new ArrayList<>();
         sessions = new ArrayList<>();
+        actions = new ArrayList<>();
     }
 
     // Singleton implementation
@@ -51,19 +53,19 @@ public class Gym {
         return sessions;
     }
 
-    // Add a client to the gym
     public void addClient(Client client) {
         clients.add(client);
     }
 
-    // Add an instructor to the gym
     public void addInstructor(Instructor instructor) {
         instructors.add(instructor);
     }
 
-    // Add a session to the gym
     public void addSession(Session session) {
         sessions.add(session);
+    }
+    public List<String> getActions(){
+        return actions;
     }
 
 

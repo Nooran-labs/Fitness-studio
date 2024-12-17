@@ -19,6 +19,9 @@ public class Instructor{
     public int getSalary() {
         return salary;
     }
+    public void getPayed(){
+        this.person.addToBalance(salary);
+    }
 
     public List<SessionType> getCertifiedClasses() {
         return certifiedClasses;

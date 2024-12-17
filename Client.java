@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client extends Person {
@@ -8,10 +9,17 @@ public class Client extends Person {
     private List<String> notifications;
     public Client(Person person) {
         super(person.getName(), person.getBalance(), person.getGender(), person.getDateOfBarth());
+        this.notifications = new ArrayList<>();
+        this.name = person.getName();
+
+
     }
 
     public Client(String name, int balance, Gender gender, String birth) {
+
         super(name, balance, gender, birth);
+        this.notifications = new ArrayList<>();
+
     }
     @Override
     public Gender getGender() {
@@ -19,16 +27,25 @@ public class Client extends Person {
     }
     @Override
     public int getBalance() {
+
         return balance;
     }
     @Override
     public String getDateOfBarth() {
+
         return DateOfBarth;
     }
 
     @Override
     public String getName() {
+
         return name;
+    }
+    public List<String> getNotifications(){
+        return notifications;
+    }
+    public void addNotification (String notification){
+        this.notifications.add(notification);
     }
 
 }

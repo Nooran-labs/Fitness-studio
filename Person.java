@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Person {
     private int balance;
     private Gender gender;
@@ -17,6 +19,9 @@ public class Person {
     public int getBalance() {
         return balance;
     }
+    public void addToBalance(int salary){
+        this.balance += salary;
+    }
 
     public String getDateOfBarth() {
         return DateOfBarth;
@@ -30,5 +35,23 @@ public class Person {
             return true;
         }
         return false;
+    }
+    public double getAge(){
+        String day = this.DateOfBarth.substring(0,2);
+        String month = this.DateOfBarth.substring(3,5);
+        String year = this.DateOfBarth.substring(6,10);
+
+        int d = Integer.parseInt(day);
+        int m = Integer.parseInt(month);
+        int y = Integer.parseInt(year);
+
+        LocalDate now = LocalDate.now();
+        int age = now.getYear()-y;
+        if(now.getMonthValue() < m || (now.getMonthValue() == m && now.getMonthValue() < m)){
+            age--;
+        }
+
+        return age;
+
     }
 }
