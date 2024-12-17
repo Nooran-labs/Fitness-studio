@@ -1,8 +1,11 @@
+import java.util.List;
+
 public class Client extends Person {
     private int balance;
     private Gender gender;
     private String name;
     private String DateOfBarth;
+    private List<String> notifications;
     public Client(Person person) {
         super(person.getName(), person.getBalance(), person.getGender(), person.getDateOfBarth());
     }
