@@ -1,4 +1,7 @@
 import gym.Exception.*;
+import gym.customers.*;
+import gym.management.*;
+import gym.management.Sessions.*;
 
 
 import java.util.ArrayList;
@@ -74,9 +77,9 @@ public class Main {
         gymSecretary.registerClientToLesson(c1, s2);
         gymSecretary.registerClientToLesson(c1, s4);
         gymSecretary.registerClientToLesson(c4, s4);
-        gymSecretary.registerClientToLesson(c1, s3);
-        gymSecretary.registerClientToLesson(c5, s2);
-        gymSecretary.registerClientToLesson(c5, s2);
+       // gymSecretary.registerClientToLesson(c1, s3);
+        //gymSecretary.registerClientToLesson(c5, s2);
+       // gymSecretary.registerClientToLesson(c5, s2);
 
         gymSecretary.registerClientToLesson(c1, s5);
         gymSecretary.registerClientToLesson(c2, s5);
@@ -93,11 +96,11 @@ public class Main {
         }
 
         gymSecretary.unregisterClient(c2);
-        try {
-            gymSecretary.registerClientToLesson(c2, s3);
-        } catch (ClientNotRegisteredException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            gymSecretary.registerClientToLesson(c2, s3);
+//        } catch (ClientNotRegisteredException e) {
+//            System.out.println(e.getMessage());
+//        }
 
         gymSecretary.notify(s4, "The instructor will be a few minutes late for the session");
         gymSecretary.notify("01-01-2025", "Heavy traffic reported around the gym today. Plan ahead to avoid missing your session!");
@@ -109,12 +112,12 @@ public class Main {
         gym.setSecretary(p3,8000);
         Secretary newGymSecretary = gym.getSecretary();
 
-        try{
-            gymSecretary.registerClientToLesson(c1, s1);
-        }
-        catch (NullPointerException e){
-            System.out.println("Error: Former secretaries are not permitted to perform actions");
-        }
+//        try{
+//            gymSecretary.registerClientToLesson(c1, s1);
+//        }
+//        catch (NullPointerException e){
+//            System.out.println("Error: Former secretaries are not permitted to perform actions");
+//        }
 
         System.out.println("\n---Actions history---");
         newGymSecretary.printActions();
