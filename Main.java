@@ -3,12 +3,11 @@ import gym.customers.*;
 import gym.management.*;
 import gym.management.Sessions.*;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws InstructorNotQualifiedException, DuplicateClientException, InvalidAgeException, ClientNotRegisteredException {
+    public static void main(String[] args) throws InstructorNotQualifiedException, DuplicateClientException, InvalidAgeException, ClientNotRegisteredException, BalanceNotEnough, InvalidGenderException, SecretaryException {
         Person p1 = new Person("David", 500, Gender.Male, "20-02-1978");
         Person p2 = new Person("Nofar", 1200, Gender.Female, "03-07-1998");
         Person p3 = new Person("Maayan", 200, Gender.Female, "21-12-2005");
@@ -60,9 +59,9 @@ public class Main {
         Instructor i2 = gymSecretary.hireInstructor(p5, 90, new ArrayList<>(Arrays.asList(SessionType.ThaiBoxing, SessionType.Pilates, SessionType.MachinePilates)));
         Instructor i3 = gymSecretary.hireInstructor(p6,50, new ArrayList<>(Arrays.asList(SessionType.Pilates, SessionType.Ninja)));
 
-        Session s1 = gymSecretary.addSession(SessionType.Pilates, "23-12-2024 10:00", ForumType.All, i2);
+        Session s1 = gymSecretary.addSession(SessionType.Pilates, "23-01-2025 10:00", ForumType.All, i2);
         Session s2 = gymSecretary.addSession(SessionType.MachinePilates, "23-10-2024 08:00", ForumType.Female, i1);
-        Session s3 = gymSecretary.addSession(SessionType.Pilates, "25-12-2024 09:30", ForumType.Seniors, i3);
+        Session s3 = gymSecretary.addSession(SessionType.Pilates, "25-01-2025 09:30", ForumType.Seniors, i3);
         Session s4 = gymSecretary.addSession(SessionType.ThaiBoxing, "01-01-2025 14:00", ForumType.All, i2);
         Session s5 = gymSecretary.addSession(SessionType.Ninja, "14-01-2025 20:00", ForumType.All, i3);
         Session s6 = gymSecretary.addSession(SessionType.ThaiBoxing, "14-01-2025 20:00", ForumType.Male, i1);
@@ -77,9 +76,9 @@ public class Main {
         gymSecretary.registerClientToLesson(c1, s2);
         gymSecretary.registerClientToLesson(c1, s4);
         gymSecretary.registerClientToLesson(c4, s4);
-       // gymSecretary.registerClientToLesson(c1, s3);
-        //gymSecretary.registerClientToLesson(c5, s2);
-       // gymSecretary.registerClientToLesson(c5, s2);
+        gymSecretary.registerClientToLesson(c1, s3);
+        gymSecretary.registerClientToLesson(c5, s2);
+        gymSecretary.registerClientToLesson(c5, s2);
 
         gymSecretary.registerClientToLesson(c1, s5);
         gymSecretary.registerClientToLesson(c2, s5);
@@ -96,11 +95,11 @@ public class Main {
         }
 
         gymSecretary.unregisterClient(c2);
-//        try {
-//            gymSecretary.registerClientToLesson(c2, s3);
-//        } catch (ClientNotRegisteredException e) {
-//            System.out.println(e.getMessage());
-//        }
+        try {
+            gymSecretary.registerClientToLesson(c2, s3);
+        } catch (ClientNotRegisteredException e) {
+            System.out.println(e.getMessage());
+        }
 
         gymSecretary.notify(s4, "The instructor will be a few minutes late for the session");
         gymSecretary.notify("01-01-2025", "Heavy traffic reported around the gym today. Plan ahead to avoid missing your session!");
@@ -108,16 +107,15 @@ public class Main {
 
         gymSecretary.paySalaries();
 
-
         gym.setSecretary(p3,8000);
         Secretary newGymSecretary = gym.getSecretary();
 
-//        try{
-//            gymSecretary.registerClientToLesson(c1, s1);
-//        }
-//        catch (NullPointerException e){
-//            System.out.println("Error: Former secretaries are not permitted to perform actions");
-//        }
+        try{
+            gymSecretary.registerClientToLesson(c1, s1);
+        }
+        catch (NullPointerException  e){
+            System.out.println("Error: Former secretaries are not permitted to perform actions");
+        }
 
         System.out.println("\n---Actions history---");
         newGymSecretary.printActions();
